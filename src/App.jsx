@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { Card } from "./components/Card/Card";
 
 function App() {
   //LOGICA DEL COMPONENTE:
@@ -32,51 +33,7 @@ function App() {
   };
 
 
-  //FUNCION CREADA PARA PASAR ALGUNOS ESTADOS A ESPAÑOL YA QUE LA API SOLO LO DEVUELVE EN INGLES
-  const handleTraduccion = () => {
-    let descriptionEs;
-
-
-    switch (dataClima.weather[0].description) {
-      case "clear sky":
-        descriptionEs = "Cielo despejado";
-        break;
-
-      case "few clouds":
-        descriptionEs = "Pocas nubes";
-        break;
-
-        case "overcast clouds":
-          descriptionEs = "Nubes cubiertas";
-          break;
-
-        case "scattered clouds":
-          descriptionEs="nubes dispersas"
-          break;
-
-        case "mist":
-          descriptionEs = "Neblina";
-          break;
-    
-          case "broken clouds":
-            descriptionEs = "nubes rotas";
-            break;
-    
-          case "shower rain":
-            descriptionEs = "Lluvias con Tormentas";
-            break;
-    
-            case "rain":
-              descriptionEs="Lluvia"
-              break;
-
-          case "thunderstorm":
-            descriptionEs="Tormenta"
-            break;
-    }
-
-    return <p  className="text-3xl font-mono underline"> {descriptionEs} </p>;
-  };
+ 
 
   //------------------------------------
   //HTML DEVUELTO:
@@ -98,16 +55,17 @@ function App() {
         //LOGICA DE RENDERIZADO (Si NO se cumple la primera condicion no pasa a la sig. )
 
         dataClima && (
+
+          
+
           <div className="containerTarjeta">
-            <h2>{dataClima.name}</h2>
-            <p>Temperatura: {parseInt(dataClima?.main?.temp - difKelvin)}°C</p>
-            <p className="text-3xl font-mono underline">Descripcion : {dataClima.weather[0].description} </p>
-            {handleTraduccion()}
-            <img
-              src={`https://openweathermap.org/img/wn/${dataClima.weather[0].icon}@2x.png`}
-              alt="icon-clima"
-            />
-          </div>
+          <Card
+                    location={dataClima.name}
+                    temperature={parseInt(dataClima?.main?.temp - difKelvin)}
+                    description={dataClima.weather[0].description}
+                    icon={`https://openweathermap.org/img/wn/${dataClima.weather[0].icon}@2x.png`}
+                    />
+           </div>
         )
       }
     </div>
