@@ -32,14 +32,11 @@ function App() {
     }
   };
 
-
- 
-
   //------------------------------------
   //HTML DEVUELTO:
   return (
     <div className="container">
-      <h1 >Aplicacion de clima 🌦️</h1>
+      <h1>Aplicacion de clima 🌦️</h1>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -55,17 +52,14 @@ function App() {
         //LOGICA DE RENDERIZADO (Si NO se cumple la primera condicion no pasa a la sig. )
 
         dataClima && (
-
-          
-
           <div className="containerTarjeta">
-          <Card
-                    location={dataClima.name}
-                    temperature={parseInt(dataClima?.main?.temp - difKelvin)}
-                    description={dataClima.weather[0].description}
-                    icon={`https://openweathermap.org/img/wn/${dataClima.weather[0].icon}@2x.png`}
-                    />
-           </div>
+            <Card
+              location={dataClima.name}
+              temperature={parseInt(dataClima?.main?.temp - difKelvin)}
+              description={dataClima.weather[0].description}
+              icon={`https://openweathermap.org/img/wn/${dataClima.weather[0].icon}@2x.png`}
+            />
+          </div>
         )
       }
     </div>
